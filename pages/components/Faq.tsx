@@ -42,17 +42,20 @@ export default function Faq() {
             Frequently Asked Questions
           </Heading>
           <Accordion 
+          key={'3'}
           
             allowMultiple
             p={{ base: "1rem", lg: "5.1rem 13rem 8rem 13rem" }}
             border="0px solid white"
           >
             {accordionData.map(({ title, content }) => (
-              <AccordionItem>
+              <AccordionItem key={'4'}>
+
                 {({ isExpanded }) => (
                   <>
                     <h2>
                       <AccordionButton
+                      key={'5'}
                         color={"#170F49"}
                         fontSize={"20px" }
                         bg="white !important"
@@ -75,6 +78,7 @@ export default function Faq() {
                       </AccordionButton>
                     </h2>
                     <AccordionPanel
+                    key={'6'}
                       borderBottom="1px solid #D9DBE9 "
                       p={{ base:'0px 0px 24px 0px',lg:'0px 0px 30px 0px'}}
                       fontSize={"18px" }
