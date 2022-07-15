@@ -38,7 +38,7 @@ export const ContactUs = () => {
               onClick={() => window.open("tel:+2349139345357")}
             />
             <PhoneNo
-             key={'id'}
+             key={'id1'}
               phone="challenge@ulesson.com"
               icon="/mail.svg"
               onClick={() => window.open("mailto:challenge@ulesson.com")}

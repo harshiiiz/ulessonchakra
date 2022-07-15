@@ -42,7 +42,7 @@ export default function Faq() {
             Frequently Asked Questions
           </Heading>
           <Accordion 
-          key='id'
+          
             allowMultiple
             p={{ base: "1rem", lg: "5.1rem 13rem 8rem 13rem" }}
             border="0px solid white"
@@ -71,7 +71,7 @@ export default function Faq() {
                         <Box flex="1" textAlign="left">
                           {title}
                         </Box>
-                        {isExpanded ? <MinusIcon key={title} /> : <AddIcon key={title} />}
+                        {isExpanded ? <MinusIcon key={title} /> : <AddIcon key={'id'} />}
                       </AccordionButton>
                     </h2>
                     <AccordionPanel
@@ -98,7 +98,7 @@ export default function Faq() {
 const MinusIcon = () => {
   return (
     <Box>
-      <Image src={"/minus.svg"} width={15} height={14}></Image>
+      <Image src={"/minus.svg"}  alt='minus'width={15} height={14}></Image>
     </Box>
   );
 };
@@ -106,7 +106,7 @@ const MinusIcon = () => {
 const AddIcon = () => {
   return (
     <Box>
-      <Image src={"/plusbig.svg"} width={15} height={14}></Image>
+      <Image src={"/plusbig.svg"} alt='plus' width={15} height={14}></Image>
     </Box>
   );
 };
