@@ -41,7 +41,8 @@ export default function Faq() {
           >
             Frequently Asked Questions
           </Heading>
-          <Accordion
+          <Accordion 
+          key='id'
             allowMultiple
             p={{ base: "1rem", lg: "5.1rem 13rem 8rem 13rem" }}
             border="0px solid white"
