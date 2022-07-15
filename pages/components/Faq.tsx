@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 import React from "react";
 
-export default function Faq() {
+export const Faq=()=> {
   const accordionData = [
     {
       title: "Which students should I register for this competition?",

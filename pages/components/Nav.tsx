@@ -27,7 +27,7 @@ const links = [
   },
 ];
 
-export default function Nav() {
+export  const Nav=()=> {
   const [isLargerThan768px] = useMediaQuery("(min-width: 768px)");
 
   const [showMobileMenu, toggleMobileMenu] = useBoolean(false);
