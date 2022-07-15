@@ -49,7 +49,8 @@ export default function Faq() {
             border="0px solid white"
           >
             {accordionData.map(({ title, content }) => (
-              <AccordionItem key={'4'}>
+              <AccordionItem 
+              key={title}>
 
                 {({ isExpanded }) => (
                   <>
