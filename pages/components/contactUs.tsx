@@ -32,11 +32,13 @@ export const ContactUs = () => {
               onClick={() => window.open("tel:+2349139345357")}
             />
             <PhoneNo
+            key={'id'}
               phone="+234 9139 345 357"
               icon="/watsapp.svg"
               onClick={() => window.open("tel:+2349139345357")}
             />
             <PhoneNo
+             key={'id'}
               phone="challenge@ulesson.com"
               icon="/mail.svg"
               onClick={() => window.open("mailto:challenge@ulesson.com")}
