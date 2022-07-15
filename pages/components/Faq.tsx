@@ -71,7 +71,7 @@ export default function Faq() {
                         <Box flex="1" textAlign="left">
                           {title}
                         </Box>
-                        {isExpanded ? <MinusIcon key={title} /> : <AddIcon key={'id'} />}
+                        {isExpanded ? <MinusIcon key={'1'} /> : <AddIcon key={'2'} />}
                       </AccordionButton>
                     </h2>
                     <AccordionPanel
