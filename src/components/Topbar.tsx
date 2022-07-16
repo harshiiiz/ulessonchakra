@@ -299,7 +299,7 @@ const Countbox = ({
             h={{ base: "40px", lg: "64px" }}
           ></Image>
         </Box>
-        <Flex flexDir="column" pl='24px'>
+        <Flex flexDir="column" pl='16px'>
           <Heading
             fontSize={{ base: "40px", lg: "56px" }}
             color={color}

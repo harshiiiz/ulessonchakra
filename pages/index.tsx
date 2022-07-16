@@ -3,15 +3,15 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { Box } from "@chakra-ui/react";
-import { ContactUs } from "../pages/components/contactUs";
-import {Nav} from "./components/Nav";
-import { Benefits } from "./components/Benefits";
-import { Competition } from "./components/Competition";
-import { Footer } from "./components/Footer";
-import {Faq} from "./components/Faq";
-import { Register } from "./components/Register";
-import { Stages } from "./components/Stages";
-import { Topbar } from "./components/Topbar";
+import { ContactUs } from "../src/components/contactUs";
+import {Nav} from "../src/components/Nav";
+import { Benefits } from "../src/components/Benefits";
+import { Competition } from "../src/components/Competition";
+import { Footer } from "../src/components/Footer";
+import {Faq} from "../src/components/Faq";
+import { Register } from "../src/components/Register";
+import { Stages } from "../src/components/Stages";
+import { Topbar } from "../src/components/Topbar";
 
 const Home: NextPage = () => {
   return (
