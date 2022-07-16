@@ -17,8 +17,8 @@ import React from 'react'
 
 export const Competition = () => {
   return (
-      <Box>
-          <Container maxW="127rem">
+      <Box bg='brand.white'>
+          <Container maxW="1440px" pb={{base:'64px', lg:'0px'}}>
               <Flex
                   p={{ base: "15px", lg: "7rem" }}
                   flexDir="column"
@@ -101,8 +101,9 @@ const Category = () => {
 const List = ({ text }: { text: string }) => {
   return (
       <Text
-          fontSize={{ base: '', lg: '16px' }}
-          fontWeight="fontWeights.semibold"
+          color='#301446'
+          fontSize={{ base: '16px', lg: '16px' }}
+          fontWeight="600"
           m="0 !important"
           opacity="0.7"
           letterSpacing="-0.01em"
@@ -149,6 +150,7 @@ const CategoryForMobile = ({
               {heading}
           </Heading>
           <VStack
+          pb={'20px'}
               pt={heading === 'Senior' ? "0px" : '24px'}
               gap="24px"
           >
@@ -162,11 +164,14 @@ const CategoryForMobile = ({
                   justify="center"
                   bg="#F2F2FB"
                   w="100%"
+                  color={'brand.purple'}
+                  fontFamily='Mulish'
+                  
               >
                   <Text>{subHeading}</Text>
               </Flex>}
               {subjects.map((subject, index) => {
-                  return <List text={subject} key={index} />
+                  return <List   text={subject} key={index} />
               })}
           </VStack>
       </Box>
@@ -220,8 +225,9 @@ const SeniorCategory = () => {
         >Science</Text>
                       </Flex>
                       <VStack
-                          gap="24px"
-                          pt="5px"
+                          gap="20px"
+                          pt="9px"
+                          pb='11px'
                       >
                           {seniorScienceSubject.map((subject, index) => {
                               return <List text={subject} key={index} />
@@ -249,8 +255,9 @@ const SeniorCategory = () => {
                       <VStack
                           borderLeft="1px solid rgba(48, 20, 70, 0.05)"
                           borderRight="1px solid rgba(48, 20, 70, 0.05)"
-                          gap="24px"
-                          pt="5px"
+                          gap="20px"
+                          pt="9px"
+                          pb='11px'
                       >
                           {seniorBusinessSubject.map((subject, index) => {
                               return <List text={subject} key={index} />
@@ -273,7 +280,9 @@ const SeniorCategory = () => {
                       >
                           <Text>Humanities</Text>
                       </Flex>
-                      <VStack gap="24px" pt="5px">
+                      <VStack gap="20px"
+                          pt="9px"
+                          pb='11px'>
                           {seniorHumanitiesSubject.map((subject, index) => {
                               return <List text={subject} key={index} />
                           })}
@@ -315,7 +324,7 @@ const JuniorCategory = () => {
   return (
       <Box
           w={{ base: '100%', lg: "282px" }}
-          h={{ base: '346px', lg: "346px" }}
+          h={{ base: '246px', lg: "346px" }}
       >
           <CategoryForMobile
               color="#7B7FDA"
@@ -329,7 +338,7 @@ const JuniorCategory = () => {
 const EligibilityAndRules = () => {
   return (
       <Flex
-          mt="7.6rem"
+          mt={{base:"61px", lg:'76px'}}
           border="2px solid rgba(48, 20, 70, 0.05)"
           borderRadius="8px"
           flexDir={{ base: 'column', lg: 'row' }}

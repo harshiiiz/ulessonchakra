@@ -7,7 +7,7 @@ export const Stages = () => {
       <Container maxW={"1440px"}>
         <Flex
           flexDir={"column"}
-          p={{ base: "6.4rem 16px 6.4rem 16px", lg: "11.1rem 11.1rem 11.1rem 11.1rem" }}
+          p={{ base: "64px 16px 64px 16px", lg: "11.1rem 11.1rem 11.1rem 11.1rem" }}
           
           alignItems="center"
         >

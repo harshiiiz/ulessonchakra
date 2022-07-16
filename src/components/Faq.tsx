@@ -30,13 +30,15 @@ export const Faq=()=> {
     },
   ];
   return (
-    <Box>
-      <Container maxW={"1440px"}>
-        <Flex flexDir={"column"} mt={{ base: "4rem", lg: "7rem" }}>
+    <Box  bg='brand.white'>
+      <Container maxW={"1440px"} pt={{base:'64px',lg:'0px'}}>
+        <Flex flexDir={"column"} >
           <Heading
             fontFamily={"font.heading"}
             fontSize={{ base: "32px", lg: "48px" }}
             textAlign="center"
+            color='brand.purple'
+            mt={{lg:'112px'}}
           
           >
             Frequently Asked Questions
@@ -45,7 +47,7 @@ export const Faq=()=> {
           key={'3'}
           
             allowMultiple
-            p={{ base: "1rem", lg: "5.1rem 13rem 8rem 13rem" }}
+            p={{ base: "1rem 0px 0px 0px", lg: "5.1rem 13rem 8rem 13rem" }}
             border="0px solid white"
           >
             {accordionData.map(({ title, content }) => (
@@ -61,8 +63,8 @@ export const Faq=()=> {
                         fontSize={"20px" }
                         bg="white !important"
                         fontFamily='Mulish'
-                        p={{ base:'24px 0px', lg:'35px 0px 36px 0px '}}
-                        borderBottom="1px solid #D9DBE9"
+                        p={{ base:'24px 0px ', lg:'35px 0px 36px 0px '}}
+                        borderBottom={{base:"1px solid #D9DBE9", lg:'none'}}
                         fontWeight={'600'}
                         letterSpacing='-0.06em'
                         lineHeight={'28px'}
@@ -72,7 +74,7 @@ export const Faq=()=> {
                           padding:'35px 0px 13px 0px ',
                         }}
                       >
-                        <Box flex="1" textAlign="left">
+                        <Box flex="1" textAlign="left" pr={{base:'15px',lg:'0px'}}>
                           {title}
                         </Box>
                         {isExpanded ? <MinusIcon key={'1'} /> : <AddIcon key={'2'} />}

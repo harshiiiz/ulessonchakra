@@ -15,7 +15,7 @@ import { Topbar } from "../src/components/Topbar";
 
 const Home: NextPage = () => {
   return (
-    <Box>
+    <Box bg='brand.purple'>
       <Head>
         <title>
           uLesson | No. 1 Learning App for Primary, Junior & Secondary School

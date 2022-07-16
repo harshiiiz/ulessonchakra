@@ -7,8 +7,8 @@ export const Benefits = () => {
       <Container maxW={"1440px"}>
         <Flex
           flexDir={"column"}
-          pt={{ base: "6.4rem", lg: "11.1rem" }}
-          pb={{ base: "55px", lg: "11.1rem" }}
+          pt={{ base: "6.4rem", lg: "74px" }}
+          pb={{ base: "55px", lg: "112px" }}
           alignItems="center"
         >
           <Heading
@@ -101,8 +101,8 @@ const Prize = ({
       <Box position={"absolute"} top="-45px" right="22px">
         <Image
           src={icon}
-          w={{ base: "5.5rem", lg: "5.1rem" }}
-          h={{ base: "5.5rem", lg: "5.1rem" }}
+          w={{ lg: "5.5rem", base: "5.1rem" }}
+          h={{ lg: "5.5rem", base: "5.1rem" }}
         ></Image>
       </Box>
       <Text

@@ -14,31 +14,31 @@ import React from "react";
 export const Topbar = () => {
   return (
     <Box
-      pt={{ base: "17px", md: "16px" }}
+      //minH={{lg:'880px'}}
+      border={"none"}
+      pt={{ base: "75px", md: "0px" }}
       color="brand.white"
       bgGradient={{
         base: "linear(to-b, brand.purple 840px, #F2F2FB 400px 600px)",
-        lg: "linear(to-b, brand.purple 780px, #F2F2FB 400px 600px)",
+        lg: "linear(to-b, brand.purple 640px, #F2F2FB 400px 600px)",
       }}
     >
       <Container maxW={"1440px"}>
-        <Box
-          position="relative"
-          p={{ base: "0px", lg: "0px 107px 0px 107px" }}
-          mt={{ base: "50px", lg: "70px" }}
-        >
+        <Box position="relative">
           <Flex
             flexDir={{ base: "column", lg: "row" }}
             justifyContent="space-between"
             alignItems={{ base: "flex-start", lg: "center" }}
+            px={{ base: "0px", md: "0px", lg: "140px" }}
 
             // gap="97px"
           >
             <Flex
               flexDir="column"
               alignItems={{ base: "center", lg: "flex-start" }}
-              //mt={{ md: '5rem' }}
+              mt={{ md: "98px" }}
               w={{ base: "100%", lg: "50%" }}
+              mb={{ md: "98px" }}
               //w='50%'
               maxW={{ base: "full", lg: "59rem" }}
               textAlign={{ base: "center", lg: "left" }}
@@ -58,7 +58,7 @@ export const Topbar = () => {
                 fontSize={{ base: "36px", lg: "56px" }}
                 fontWeight="700"
                 fontFamily="Montserrat"
-                whiteSpace="nowrap"
+                //whiteSpace="nowrap"
               >
                 Schools Challenge
               </Heading>
@@ -88,7 +88,6 @@ export const Topbar = () => {
             </Flex>
             <Flex
               w={{ base: "full", lg: "auto" }}
-              maxW="552px"
               mt={{ base: "1.4rem", lg: "0" }}
               pr={{ base: "1.4rem", lg: "0" }}
             >
@@ -97,9 +96,10 @@ export const Topbar = () => {
           </Flex>
           {/* countdown */}
           <Flex
+            ml={{ base: "0px", lg: "123px" }}
             w="full"
             maxW="1200px"
-            p="48px 58px 48px 37px"
+            p="32px 38px "
             borderRadius="8px"
             maxH={{ base: "350px", lg: "202px" }}
             flexDir={{ base: "column", lg: "row" }}
@@ -119,7 +119,7 @@ export const Topbar = () => {
                 orientation="vertical"
                 h="138px"
                 border="2px solid rgba(48, 20, 70, 0.15)"
-                mr='10px'
+                mr="24px"
               />
             </Show>
             <Show below="md">
@@ -141,7 +141,7 @@ export const Topbar = () => {
                 orientation="vertical"
                 h="138px"
                 border="2px solid rgba(48, 20, 70, 0.15)"
-                mr='10px'
+                mr="24px"
               />
             </Show>
             <Show below="md">
@@ -152,118 +152,72 @@ export const Topbar = () => {
                 opacity="0.15"
               />
             </Show>
-            <Box >
+            <Box w={{ base: "100%", lg: "400px" }}>
               <Flex>
-                <Box mr="14px "  w={{ base: "40px", lg: "64px" }}>
+                <Box mr="14px " mt='8px' w={{ base: "40px", lg: "64px" }}>
                   <Image
                     src="/ic3.svg"
                     w={{ base: "40px", lg: "64px" }}
                     h={{ base: "40px", lg: "64px" }}
                   ></Image>
                 </Box>
-                <Flex flexDir="column" pl='16px'>
-                  <Flex>
-                    <Flex flexDir="column">
-                      <Text
-                        fontSize={{ base: "10px", lg: "14px" }}
-                        color="#301446"
-                        opacity="0.5"
-                        fontWeight="700"
-                        textAlign={"center"}
-                        fontFamily={'Mulish'}
-                        
-                      >
-                        DAYS
-                      </Text>
-                      <Text
-                        fontSize={{ base: "40px", lg: "56px" }}
-                        color="#EA7052"
-                        fontWeight="700"
-                        mt={{lg:"-8px", base:'0px'}}
-                        lineHeight="110%"
-                        fontFamily={'Montserrat'}
-                        
-                      >
-                        08
-                      </Text>
-                    </Flex>
+                <Flex flexDir="column" justify="flex-start">
+                  <Flex justify={"space-between"} pr='20px' pl='20px'>
                     <Text
-                      fontSize={{ base: "40px", lg: "56px" }}
-                      color="#EA7052"
+                      fontSize={{ base: "10px", lg: "14px" }}
+                      color="#301446"
+                      opacity="0.5"
                       fontWeight="700"
-                      mt="10px"
-                      paddingInline="8px"
-                      lineHeight="110%"
-                      fontFamily={'Montserrat'}
+                      textAlign={"center"}
+                      fontFamily={"Mulish"}
                     >
-                      :
+                      DAYS
                     </Text>
-                    <Flex flexDir="column">
-                      <Text
-                        fontSize={{ base: "10px", lg: "14px" }}
-                        color="#301446"
-                        opacity="0.5"
-                        fontWeight="700"
-                        textAlign={"center"}
-                        fontFamily={'Mulish'}
-                      >
-                        HOURS
-                      </Text>
-                      <Text
-                        fontSize={{ base: "40px", lg: "56px" }}
-                        color="#EA7052"
-                        fontWeight="700"
-                        mt={{lg:"-8px", base:'0px'}}
-                        lineHeight="110%"
-                        fontFamily={'Montserrat'}
 
-                      >
-                        12
-                      </Text>
-                    </Flex>
                     <Text
-                      fontSize={{ base: "40px", lg: "56px" }}
-                      color="#EA7052"
+                      fontSize={{ base: "10px", lg: "14px" }}
+                      color="#301446"
+                      opacity="0.5"
                       fontWeight="700"
-                      mt="10px"
-                      paddingInline="8px"
-                      lineHeight="110%"
-                      fontFamily={'Montserrat'}
+                      textAlign={"center"}
+                      fontFamily={"Mulish"}
                     >
-                      :
+                      HOURS
                     </Text>
-                    <Flex flexDir="column">
-                      <Text
-                        fontSize={{ base: "10px", lg: "14px" }}
-                        color="#301446"
-                        opacity="0.5"
-                        fontWeight="700"
-                        textAlign={"center"}
-                        fontFamily={'Mulish'}
-                      >
-                        MINUTES
-                      </Text>
-                      <Text
-                        fontSize={{ base: "40px", lg: "56px" }}
-                        color="#EA7052"
-                        fontWeight="700"
-                        mt={{lg:"-8px", base:'0px'}}
-                        lineHeight="110%"
-                        fontFamily={'Montserrat'}
-                      >
-                        32
-                      </Text>
-                    </Flex>
+
+                    <Text
+                      fontSize={{ base: "10px", lg: "14px" }}
+                      color="#301446"
+                      opacity="0.5"
+                      fontWeight="700"
+                      textAlign={"center"}
+                      fontFamily={"Mulish"}
+                    >
+                      MINS
+                    </Text>
                   </Flex>
+                  <Heading
+                    fontSize={{ base: "40px", lg: "56px" }}
+                    color="#EA7052"
+                    fontWeight="700"
+                    lineHeight="110%"
+                    fontFamily={"Montserrat"}
+                  >
+                    <Flex justifyContent={"space-between"}>
+                      <Box>05 :</Box>
+                      <Box>&nbsp;12 :</Box>
+                      <Box>32</Box>
+                    </Flex>
+                  </Heading>
                   <Text
                     fontSize={{ base: "12px", lg: "18px" }}
                     fontWeight="700"
                     lineHeight={"110%"}
                     letterSpacing="1px"
                     opacity="0.75"
-                    mt="6px"
+                    mt={{ base: "0px", lg: "6px" }}
                     color="#301446"
-                    fontFamily={'Mulish'}
+                    fontFamily={"Mulish"}
                   >
                     TIME TO COMPETITION
                   </Text>
@@ -290,21 +244,22 @@ const Countbox = ({
   color: string;
 }) => {
   return (
-    <Box   >
+    <Box w={{ base: "100%", lg: "400px" }}>
       <Flex>
-        <Box  w={{ base: "40px", lg: "64px" }} pl='16px'>
+        <Box mr="14px">
           <Image
             src={icon}
             w={{ base: "40px", lg: "64px" }}
             h={{ base: "40px", lg: "64px" }}
           ></Image>
         </Box>
-        <Flex flexDir="column" pl='16px'>
+        <Flex flexDir="column" justify="flex-start">
           <Heading
             fontSize={{ base: "40px", lg: "56px" }}
             color={color}
             lineHeight="110%"
-            fontFamily={'Montserrat'}
+            letterSpacing="-0.06em"
+            fontFamily={"Montserrat"}
           >
             {number}
           </Heading>
@@ -315,10 +270,9 @@ const Countbox = ({
             lineHeight={"110%"}
             letterSpacing="1px"
             opacity="0.75"
-            mt="6px"
-            fontFamily={'Mulish'}
-            mr='66px'
-            whiteSpace={'nowrap'}
+            mt={{ base: "0px", lg: "17px" }}
+            fontFamily={"Mulish"}
+            whiteSpace={"nowrap"}
           >
             {text}
           </Text>

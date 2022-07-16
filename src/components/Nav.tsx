@@ -33,14 +33,16 @@ export  const Nav=()=> {
   const [showMobileMenu, toggleMobileMenu] = useBoolean(false);
 
   return (
-    <Box bg="brand.purple" borderBottom={'none'}>
+    <Box bg="brand.purple" >
       <Container
+      border={'0px'} boxShadow='none'
         maxW="1440px"
         pt={{ base: "37px", lg: "32px" }}
         px={{ base: "30px", lg: "120px" }}
         pb={{ base: "17px", lg: "22px" }}
+       
       >
-        <Flex justify="space-between" align="center" color="#fff" w="full" >
+        <Flex justify="space-between" align="center" color="#fff" w="full" border={'0px'}>
           <Link href="/">
             
               <Image
