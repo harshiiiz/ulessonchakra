@@ -96,10 +96,10 @@ export const Topbar = () => {
           </Flex>
           {/* countdown */}
           <Flex
-            ml={{ base: "0px", lg: "123px" }}
+            ml={{ base: "0px", lg: "115px" }}
             w="full"
-            maxW="1200px"
-            p="32px 38px "
+            maxW="1220px"
+            p={{sm:'15px 0px 15px 10px ',xsm:'32px 38px ',lg:"32px 29px  32px 38px"}}
             borderRadius="8px"
             maxH={{ base: "350px", lg: "202px" }}
             flexDir={{ base: "column", lg: "row" }}
@@ -202,11 +202,12 @@ export const Topbar = () => {
                     fontWeight="700"
                     lineHeight="110%"
                     fontFamily={"Montserrat"}
+                    
                   >
                     <Flex justifyContent={"space-between"}>
-                      <Box>05 :</Box>
+                      <Box >05 :</Box>
                       <Box>&nbsp;12 :</Box>
-                      <Box>32</Box>
+                      <Box>&nbsp;32</Box>
                     </Flex>
                   </Heading>
                   <Text

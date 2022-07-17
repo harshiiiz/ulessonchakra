@@ -19,4 +19,10 @@ export default extendTheme({
       body: "Mulish, sans-serif",
     },
   },
+   breakpoints : {
+    sm: '320px',
+    xsm:'425px',
+    lg:'1440px'
+    
+  }
 });
