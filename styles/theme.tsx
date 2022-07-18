@@ -21,8 +21,11 @@ export default extendTheme({
   },
    breakpoints : {
     sm: '320px',
-    xsm:'425px',
-    lg:'1024px'
+    xsm:'375px',
+    lg:'62em',
+    tab:'768px',
+    xl:'1440px',
+    
     
   }
 });

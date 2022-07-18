@@ -10,26 +10,33 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import { Nav } from "./Nav";
 
 export const Topbar = () => {
   return (
     <Box
       //minH={{lg:'880px'}}
       border={"none"}
-      pt={{ base: "75px", md: "0px" }}
+      pt={{ base: "37px", md: "0px" }}
       color="brand.white"
       bgGradient={{
         base: "linear(to-b, brand.purple 840px, #F2F2FB 400px 600px)",
-        lg: "linear(to-b, brand.purple 640px, #F2F2FB 400px 600px)",
+        lg: "linear(to-b, brand.purple 740px, #F2F2FB 400px 600px)",
       }}
     >
       <Container maxW={"1440px"}>
-        <Box position="relative">
+        <Flex
+          position="relative"
+          flexDir="column"
+          alignItems={{ base: "flex-start", lg: "center" }}
+          justifyContent="center"
+        >
+          <Nav/>
           <Flex
             flexDir={{ base: "column", lg: "row" }}
             justifyContent="space-between"
             alignItems={{ base: "flex-start", lg: "center" }}
-            px={{ base: "0px", md: "0px", lg: "140px" }}
+            // px={{ base: "0px", md: "0px", lg: "140px" }}
 
             // gap="97px"
           >
@@ -58,7 +65,7 @@ export const Topbar = () => {
                 fontSize={{ base: "36px", lg: "56px" }}
                 fontWeight="700"
                 fontFamily="Montserrat"
-                //whiteSpace="nowrap"
+                whiteSpace={{xsm:"nowrap"}}
               >
                 Schools Challenge
               </Heading>
@@ -96,10 +103,14 @@ export const Topbar = () => {
           </Flex>
           {/* countdown */}
           <Flex
-            ml={{ base: "0px", lg: "115px" }}
+            // ml={{ base: "0px", lg: "115px" }}
             w="full"
             maxW="1220px"
-            p={{sm:'15px 0px 15px 10px ',xsm:'32px 38px ',lg:"32px 29px  32px 38px"}}
+            p={{
+              sm: "15px 0px 15px 10px ",
+              // xsm: "32px 38px ",
+              lg: "32px 29px  32px 38px",
+            }}
             borderRadius="8px"
             maxH={{ base: "350px", lg: "202px" }}
             flexDir={{ base: "column", lg: "row" }}
@@ -154,7 +165,7 @@ export const Topbar = () => {
             </Show>
             <Box w={{ base: "100%", lg: "400px" }}>
               <Flex>
-                <Box mr="14px " mt='8px' w={{ base: "40px", lg: "64px" }}>
+                <Box mr="14px " mt="8px" w={{ base: "40px", lg: "64px" }}>
                   <Image
                     src="/ic3.svg"
                     w={{ base: "40px", lg: "64px" }}
@@ -162,7 +173,7 @@ export const Topbar = () => {
                   ></Image>
                 </Box>
                 <Flex flexDir="column" justify="flex-start">
-                  <Flex justify={"space-between"} pr='20px' pl='20px'>
+                  <Flex justify={"space-between"} pr="20px" pl="20px">
                     <Text
                       fontSize={{ base: "10px", lg: "14px" }}
                       color="#301446"
@@ -202,10 +213,9 @@ export const Topbar = () => {
                     fontWeight="700"
                     lineHeight="110%"
                     fontFamily={"Montserrat"}
-                    
                   >
                     <Flex justifyContent={"space-between"}>
-                      <Box >05 :</Box>
+                      <Box>05 :</Box>
                       <Box>&nbsp;12 :</Box>
                       <Box>&nbsp;32</Box>
                     </Flex>
@@ -227,7 +237,7 @@ export const Topbar = () => {
             </Box>
             {/* <Countbox text="TIME TO COMPETITION" icon="/ic3.svg" number="05 : 12 : 32" color='#EA7052'/> */}
           </Flex>
-        </Box>
+        </Flex>
       </Container>
     </Box>
   );

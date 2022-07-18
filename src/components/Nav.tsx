@@ -34,14 +34,14 @@ export  const Nav=()=> {
 
   return (
     <Box bg="brand.purple" >
-      <Container
+       <Container
       border={'0px'} boxShadow='none'
         maxW="1440px"
-        pt={{ base: "37px", lg: "32px" }}
-        px={{ base: "30px", lg: "120px" }}
-        pb={{ base: "17px", lg: "22px" }}
+        pt={{ base: "0px", lg: "32px" }}
+        mr={{ base: "270px", lg: "300px" }}
+        pb={{ base: "75px", lg: "22px" }}
        
-      >
+      > 
         <Flex justify="space-between" align="center" color="#fff" w="full" border={'0px'}>
           <Link href="/">
             
@@ -67,6 +67,7 @@ export  const Nav=()=> {
                   target="blank"
                   fontFamily="Mulish"
                   opacity="0.5"
+                  ml='120px'
                   _hover={{ color: "#FFF", textDecoration: "none" }}
                 >
                   {link.title}
@@ -88,7 +89,7 @@ export  const Nav=()=> {
 
           {showMobileMenu && <MobileMenu close={toggleMobileMenu.off} />}
         </Flex>
-      </Container>
+     </Container> 
     </Box>
   );
 }
