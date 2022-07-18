@@ -22,7 +22,7 @@ export default extendTheme({
    breakpoints : {
     sm: '320px',
     xsm:'425px',
-    lg:'1440px'
+    lg:'1024px'
     
   }
 });
