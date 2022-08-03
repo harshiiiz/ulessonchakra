@@ -125,7 +125,7 @@ function Regstudent() {
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = React.useRef();
+  const cancelRef = React.useRef<HTMLButtonElement>(null);
   console.log(errors);
   const [startDate, setStartDate] = useState(new Date());
 
@@ -671,7 +671,7 @@ function Regstudent() {
       </Container>
       <AlertDialog
         isOpen={isOpen}
-        leastDestructiveRef={cancelRef.current}
+        leastDestructiveRef={cancelRef}
         onClose={onClose}
         size="lg"
       >
@@ -706,7 +706,7 @@ function Regstudent() {
               flexDir={{ base: "column", lg: "row" }}
             >
               <Button
-                ref={cancelRef.current}
+                //ref={cancelRef}
                 onClick={onClose}
                 as="a"
                 href="/"
