@@ -14,16 +14,16 @@ import { Nav } from "./Nav";
 const axios = require("axios").default;
 import moment from "moment";
 const baseURL =
-  "https://13.235.19.203:8080/contest/?id=62b0444ebf3d0665b830e644";
+  "http://13.235.19.203:8080/contest/?id=62b0444ebf3d0665b830e644";
 
 export const Topbar = () => {
   const [isTimerRunning, setIsTimerRunning] = useState<boolean>(true);
   const [schoolCount, setSchoolCount] = useState<number>(0);
   const [studentCount, setStudentCount] = useState<number>(0);
-  const [timerDays, setTimerDays] = useState<number | any>();
-  const [timerHours, setTimerHours] = useState<number | any>();
-  const [timerMinutes, setTimerMinutes] = useState<number | any>();
-  const [timerSeconds, setTimerSeconds] = useState<number | any>();
+  const [timerDays, setTimerDays] = useState<number | any>(0o0);
+  const [timerHours, setTimerHours] = useState<number | any>(0);
+  const [timerMinutes, setTimerMinutes] = useState<number | any>(0);
+ 
   useEffect(() => {
     axios.get(baseURL).then((response: any) => {
       setSchoolCount(response.data.contest.schoolRegisteredForCompetition);

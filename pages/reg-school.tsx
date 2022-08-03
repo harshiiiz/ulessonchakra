@@ -128,7 +128,7 @@ function Regschool() {
       };
       const response = await axios({
         method: "post",
-        url: "https://13.235.19.203:8080/school/",
+        url: "http://13.235.19.203:8080/school/",
         data: reqObj,
         headers: { "Content-Type": "application/json" },
       });

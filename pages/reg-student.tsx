@@ -113,7 +113,7 @@ function Regstudent() {
       };
       const response = await axios({
         method: "post",
-        url: "https://13.235.19.203:8080/student/",
+        url: "http://13.235.19.203:8080/student/",
         data: reqObj,
         headers: { "Content-Type": "application/json" },
       });
