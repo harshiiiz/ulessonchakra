@@ -80,7 +80,7 @@ interface FormValues {
 //     representativePhone: yup.number().required(),
 
 //   });
-function regstudent() {
+function Regstudent() {
   const {
     register,
     handleSubmit,
@@ -595,7 +595,7 @@ function regstudent() {
                 fontFamily={"Mulish"}
                 fontWeight="600"
               >
-                Principal’s Email Address
+                Principal&apos;s Email Address
               </FormLabel>
               <Input
                 bg="#F9FAFF"
@@ -636,7 +636,7 @@ function regstudent() {
                 fontFamily={"Mulish"}
                 fontWeight="600"
               >
-                Principal's Phone Number
+                Principal&apos;s Phone Number
               </FormLabel>
               <Input
                 bg="#F9FAFF"
@@ -744,7 +744,7 @@ function regstudent() {
   );
 }
 
-export default regstudent;
+export default Regstudent;
 
 const Instructions = () => {
   const rules = [

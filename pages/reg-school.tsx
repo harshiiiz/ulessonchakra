@@ -91,7 +91,7 @@ interface FormValues {
   }[];
 }
 
-function regschool() {
+function Regschool() {
   const {
     register,
     handleSubmit,
@@ -349,7 +349,7 @@ function regschool() {
                 fontFamily={"Mulish"}
                 fontWeight="600"
               >
-                Principal’s Email Address
+                Principal&apos;s Email Address
               </FormLabel>
               <Input
                 bg="#F9FAFF"
@@ -372,7 +372,7 @@ function regschool() {
                 fontFamily={"Mulish"}
                 fontWeight="600"
               >
-                Principal's Phone Number
+                Principal&apos;s Phone Number
               </FormLabel>
               <Input
                 bg="#F9FAFF"
@@ -817,7 +817,7 @@ function regschool() {
     </>
   );
 }
-export default regschool;
+export default Regschool;
 
 const Instructions = () => {
   const rules = [
