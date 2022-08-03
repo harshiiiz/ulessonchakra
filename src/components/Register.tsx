@@ -17,12 +17,12 @@ export const Register = () => {
         >
           <Regbox
             text={"Register as a Student"}
-            btnlink={"/Studentreg"}
+            btnlink={"/reg-student"}
             icon={"/student.svg"}
           />
           <Regbox
             text={"Register as a School"}
-            btnlink={"/Schoolreg"}
+            btnlink={"/reg-school"}
             icon={"/school.svg"}
           />
         </Flex>
