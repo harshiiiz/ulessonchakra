@@ -14,7 +14,7 @@ import { Nav } from "./Nav";
 const axios = require("axios").default;
 import moment from "moment";
 const baseURL =
-  "http://13.235.19.203:8080/contest/?id=62b0444ebf3d0665b830e644";
+  "https://13.235.19.203:8080/contest/?id=62b0444ebf3d0665b830e644";
 
 export const Topbar = () => {
   const [isTimerRunning, setIsTimerRunning] = useState<boolean>(true);

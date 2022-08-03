@@ -113,7 +113,7 @@ function Regstudent() {
       };
       const response = await axios({
         method: "post",
-        url: "http://13.235.19.203:8080/student/",
+        url: "https://13.235.19.203:8080/student/",
         data: reqObj,
         headers: { "Content-Type": "application/json" },
       });
@@ -218,7 +218,7 @@ function Regstudent() {
                 {...register("lastName", { required: true })}
               />
               <Text mt="5px" color="brand.orange">
-                {errors.lastName && "First name is required"}
+                {errors.lastName && "Last name is required"}
               </Text>
             </FormControl>
             <FormControl isInvalid={!!errors.gender} id="gender">
@@ -250,9 +250,7 @@ function Regstudent() {
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </Select>
-              <Text mt="5px" color="brand.orange">
-                {errors.gender && "First name is required"}
-              </Text>
+              
             </FormControl>
           </SimpleGrid>
           <SimpleGrid
@@ -298,7 +296,7 @@ function Regstudent() {
                 >
                   {" "}
                   <ReactDatePicker
-                   closeOnScroll={true}
+                  
                     selected={startDate}
                     onChange={(date: Date) => setStartDate(date)}
                     dateFormat='dd/MM/yyyy'

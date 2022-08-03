@@ -128,7 +128,7 @@ function Regschool() {
       };
       const response = await axios({
         method: "post",
-        url: "http://13.235.19.203:8080/school/",
+        url: "https://13.235.19.203:8080/school/",
         data: reqObj,
         headers: { "Content-Type": "application/json" },
       });
@@ -577,7 +577,7 @@ function Regschool() {
                       >
                         {" "}
                         <ReactDatePicker
-                         closeOnScroll={true}
+                         
                           selected={startDate}
                           onChange={(date: Date) => setStartDate(date)}
                           dateFormat='dd/MM/yyyy'
