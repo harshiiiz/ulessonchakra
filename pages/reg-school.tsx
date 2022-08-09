@@ -154,7 +154,7 @@ function Regschool() {
     }
     console.log(data);
 
-     alert(JSON.stringify(data));
+    // alert(JSON.stringify(data));
 
     router.replace("/congrats-school");
   };

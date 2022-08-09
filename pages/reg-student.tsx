@@ -136,7 +136,7 @@ function Regstudent() {
     } catch (error) {
       console.log(error);
     }
-    alert(JSON.stringify(data));
+    //alert(JSON.stringify(data));
      router.replace("/congrats-student");
   };
 
