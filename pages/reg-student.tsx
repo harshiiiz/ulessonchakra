@@ -25,8 +25,9 @@ import {
   AlertDialogBody,
   useDisclosure,
   HStack,
-  Select,
 } from "@chakra-ui/react";
+import Select from "react-select";
+
 import { useForm } from "react-hook-form";
 import { TriangleDownIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
@@ -35,6 +36,8 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import axios from "axios";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 enum GenderEnum {
   female = "female",
@@ -48,11 +51,23 @@ enum ExamLocationenum {
   Lagos = "Lagos",
   Nigeria = "Nigeria",
 }
+const gender = [
+  { value: "female", label: "female" },
+  { value: "male", label: "male" },
+];
+const grades = [
+  { value: "Senior Secondary", label: "Senior Secondary" },
+  { value: "Junior Secondary", label: "Junior Secondary" },
+];
+const options = [
+  { value: "Lagos", label: "Lagos" },
+  { value: "Nigeria", label: "Nigeria" },
+];
 interface FormValues {
   firstName: string;
   lastName: string;
   gender: GenderEnum;
-  dateOfBirth: string;
+  dateOfBirth: string|Date;
   gradeGroup: gradeGroups;
   competitionCategory: string;
   class: string;
@@ -65,27 +80,27 @@ interface FormValues {
   name: string;
   //country:string;
 }
-// const schema = yup.object().shape({
-//     firstName: yup.string().required("First name is required"),
-//     lastName: yup.string().required("Last name is required"),
-//     gender: yup.object().required("Gender is required "),
-//     dateOfBirth: yup.date(),
-//    gradeGroup: yup.object().required("Grade Group is required"),
-//     competitionCategory: yup.string().required(),
-//     class: yup.string().required(),
-//     regno: yup.number().required(),
-//     ExamLocation: yup.object().shape({}).required(),
-//     email:yup.string().email().required("This is a required field"),
-//    representativeName: yup.string().required("This is a required field "),
-//     representativePhone: yup.number().required(),
+const schema = yup.object().shape({
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  phoneNumber: yup.number().positive().integer().required(),
+  competitionCategory: yup.string().required(),
+  class: yup.string().required(),
+  name: yup.string().required("School name is required"),
 
-//   });
+  email: yup.string().email().required("This is a required field"),
+  representativeName: yup.string().required("This is a required field "),
+  representativePhone: yup.number().positive().integer().required(),
+});
 function Regstudent() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+  });
 
   const router = useRouter();
   const onSubmit = async (data: any) => {
@@ -93,16 +108,16 @@ function Regstudent() {
       let reqObj = {
         firstName: data.firstName,
         lastName: data.lastName,
-        gradeGroup: "Junior",
-        gender: "Male",
+        gradeGroup: data.gradeGroup,
+        gender: data.gender,
         dateOfBirth: "2022-06-16",
-        competitionCategory: "full stack",
-        examLocation: "Lucknow",
-        class: "12",
-        phoneNumber: "+91 7309908905",
+        competitionCategory: data.competitionCategory,
+        examLocation: data.examLocation,
+        class: data.class,
+        phoneNumber: data.phoneNumber,
         school: {
           contestId: "62bd82a6138c991f5e1f9dba",
-          name: "SRM University",
+          name: data.name,
           schoolLocation: "Lucknow",
           country: "India",
           examLocation: "Lucknow",
@@ -121,7 +136,8 @@ function Regstudent() {
     } catch (error) {
       console.log(error);
     }
-    router.replace("/congrats-student");
+    alert(JSON.stringify(data));
+     router.replace("/congrats-student");
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -131,7 +147,6 @@ function Regstudent() {
 
   return (
     <>
-    
       <Container maxW="997px">
         <Flex mt="46px">
           <Image width="133px" src="/logoulesson.svg" alt="logo" />
@@ -232,25 +247,33 @@ function Regstudent() {
                 Gender
               </FormLabel>
               <Select
-                opacity="0.7"
-                color="#301446"
-                fontSize="14px"
-                fontFamily={"Mulish"}
-                fontWeight="600"
-                bg="#F9FAFF"
-                icon={
-                  <TriangleDownIcon
-                    w={"10px !important"}
-                    h={"10px !important"}
-                    color="brand.purple"
-                  />
-                }
+                options={gender}
+                instanceId="gender"
                 {...register("gender", { required: true })}
-              >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </Select>
-              
+                onChange={(e: any) => setValue("gender", e?.value || "")}
+                placeholder=" "
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    borderRadius: "4px",
+                    outline: "none",
+                    boxShadow: "none",
+                    background: "#F9FAFF",
+                    borderColor: "#E0E7FF",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    color: "rgba(48, 20, 70, 0.7);",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                    background: state.isSelected ? "#F9FAFF" : "#fff",
+                  }),
+                }}
+              />
             </FormControl>
           </SimpleGrid>
           <SimpleGrid
@@ -292,21 +315,19 @@ function Regstudent() {
                   opacity="0.7"
                   p={2}
                   bg="#F9FAFF"
-                  zIndex='1000000'
+                  zIndex="1000000"
                 >
                   {" "}
                   <ReactDatePicker
-                  
                     selected={startDate}
                     onChange={(date: Date) => setStartDate(date)}
-                    dateFormat='dd/MM/yyyy'
-                   
-                   // minDate={moment().subtract(500, "years")}
-                   // maxDate={moment().subtract(25, "years")}
+                    dateFormat="dd/MM/yyyy"
+                    // minDate={moment().subtract(500, "years")}
+                    // maxDate={moment().subtract(25, "years")}
                     // showDisabledMonthNavigation
                     dropdownMode="select"
                     showYearDropdown
-        scrollableYearDropdown
+                    scrollableYearDropdown
                   />
                 </FormLabel>
               </InputGroup>
@@ -322,24 +343,37 @@ function Regstudent() {
                 Grade Group
               </FormLabel>
               <Select
-                opacity="0.7"
-                color="#301446"
-                fontSize="14px"
-                fontFamily={"Mulish"}
-                fontWeight="600"
-                bg="#F9FAFF"
-                icon={
-                  <TriangleDownIcon
-                    w={"10px !important"}
-                    h={"10px !important"}
-                    color="brand.purple"
-                  />
-                }
-                {...register("gradeGroup", { required: true })}
-              >
-                <option value="SeniorSecondary">Senior Secondary</option>
-                <option value="JuniorSecondary">Junior Secondary</option>
-              </Select>
+                options={grades}
+                //value={{ label: "Senior Secondary", value: "Senior Secondary" }}
+                instanceId="gradeGroup"
+                {...register("gradeGroup", {
+                  required: "Grade group is required",
+                })}
+                onChange={(e: any) => setValue("gradeGroup", e?.value || "")}
+                placeholder=" "
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    borderRadius: "4px",
+                    outline: "none",
+                    boxShadow: "none",
+                    background: "#F9FAFF",
+                    borderColor: "#E0E7FF",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    color: "rgba(48, 20, 70, 0.7);",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                    background: state.isSelected ? "#F9FAFF" : "#fff",
+                  }),
+                }}
+              />
+
               <Text mt="5px" color="brand.orange">
                 {errors.gradeGroup && "Grade group is required"}
               </Text>
@@ -434,24 +468,32 @@ function Regstudent() {
                 Preffered Exam Location
               </FormLabel>
               <Select
-                opacity="0.7"
-                color="#301446"
-                fontSize="14px"
-                fontFamily={"Mulish"}
-                fontWeight="600"
-                bg="#F9FAFF"
-                icon={
-                  <TriangleDownIcon
-                    w={"10px !important"}
-                    h={"10px !important"}
-                    color="brand.purple"
-                  />
-                }
+                options={options}
+                instanceId="examLocation"
                 {...register("examLocation", { required: true })}
-              >
-                <option value="Lagos">Lagos</option>
-                <option value="Nigeria">Nigeria</option>
-              </Select>
+                onChange={(e: any) => setValue("examLocation", e?.value || "")}
+                placeholder=" "
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    borderRadius: "4px",
+                    outline: "none",
+                    boxShadow: "none",
+                    background: "#F9FAFF",
+                    borderColor: "#E0E7FF",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    color: "rgba(48, 20, 70, 0.7);",
+                    fontSize: "14px",
+                    background: state.isSelected ? "#F9FAFF" : "#fff",
+                  }),
+                }}
+              />
+
               <Text mt="5px" color="brand.orange">
                 {errors.examLocation && "ExamLocation is required"}
               </Text>
@@ -559,24 +601,36 @@ function Regstudent() {
                 Exam Location
               </FormLabel>
               <Select
-                opacity="0.7"
-                color="#301446"
-                fontSize="14px"
-                fontFamily={"Mulish"}
-                fontWeight="600"
-                bg="#F9FAFF"
-                icon={
-                  <TriangleDownIcon
-                    w={"10px !important"}
-                    h={"10px !important"}
-                    color="brand.purple"
-                  />
-                }
+                options={options}
+                instanceId="schoolLocation"
                 {...register("schoolLocation", { required: true })}
-              >
-                <option value="Lagos">Lagos</option>
-                <option value="Nigeria">Nigeria</option>
-              </Select>
+                onChange={(e: any) =>
+                  setValue("schoolLocation", e?.value || "")
+                }
+                placeholder=" "
+
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    borderRadius: "4px",
+                    outline: "none",
+                    boxShadow: "none",
+                    background: "#F9FAFF",
+                    borderColor: "#E0E7FF",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    color: "rgba(48, 20, 70, 0.7);",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                    background: state.isSelected ? "#F9FAFF" : "#fff",
+                  }),
+                }}
+              />
             </FormControl>
           </SimpleGrid>
           <SimpleGrid
@@ -660,7 +714,6 @@ function Regstudent() {
               fontFamily="Mulish"
               letterSpacing={"0.4px"}
               type="submit"
-             
             >
               Submit
             </Button>

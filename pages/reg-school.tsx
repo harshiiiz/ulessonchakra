@@ -24,16 +24,30 @@ import {
   AlertDialogBody,
   useDisclosure,
   HStack,
-  Select,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { useForm, useFieldArray } from "react-hook-form";
-import { TriangleDownIcon } from "@chakra-ui/icons";
+//import { TriangleDownIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import Select from "react-select";
+
+const options = [
+  { value: "Lagos", label: "Lagos" },
+  { value: "Nigeria", label: "Nigeria" },
+];
+const gender = [
+  { value: "female", label: "female" },
+  { value: "male", label: "male" },
+];
+const grades = [
+  { value: "Senior Secondary", label: "Senior Secondary" },
+  { value: "Junior Secondary", label: "Junior Secondary" },
+];
 
 enum GenderEnum {
   female = "female",
@@ -60,7 +74,7 @@ const schema = yup.object().shape({
       yup.object().shape({
         firstName: yup.string().required(),
         lastName: yup.string().required(),
-        ulessonNumber: yup.number().required(),
+        ulessonNumber: yup.number().positive().integer().required(),
       })
     )
     .required(),
@@ -76,7 +90,7 @@ interface FormValues {
   representativeEmail: string;
   representativeName: string;
   representativePhone: number;
- //schoolContact
+  //schoolContact
   students: {
     firstName: string;
     lastName: string;
@@ -86,8 +100,7 @@ interface FormValues {
     competitionCategory: string;
     class: string;
     ulessonNumber: number;
-   // examLocation: ExamLocationenum
-    
+    // examLocation: ExamLocationenum
   }[];
 }
 
@@ -97,6 +110,7 @@ function Regschool() {
     handleSubmit,
     control,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
@@ -111,20 +125,22 @@ function Regschool() {
         examLocation: data.examLocation,
         representativePhone: data.representativePhone,
         representativeEmail: data.representativeEmail,
-        representativeName: "BBDU Uversity",
+        representativeName:"Aman" ,
         country: "India",
         contestId: "62bd82a6138c991f5e1f9dba",
-        students:[ {
-          firstName: "data.firstName",
-          lastName: "data.lastName",
-          gradeGroup: "Junior",
-          gender: "Male",
-          dateOfBirth: "2022-06-16",
-          competitionCategory: "full stack",
-          examLocation: "Lucknow",
-          class: "12",
-          phoneNumber: "+91 7309908905",
-        }],
+        students: [
+          {
+            firstName: "data.firstName",
+            lastName: "data.lastName",
+            gradeGroup: "Junior",
+            gender: "Male",
+            dateOfBirth: "2022-06-16",
+            competitionCategory: "full stack",
+            examLocation: "Lucknow",
+            class: "12",
+            phoneNumber: "+91 7309908905",
+          },
+        ],
       };
       const response = await axios({
         method: "post",
@@ -138,8 +154,8 @@ function Regschool() {
     }
     console.log(data);
 
-    // alert(JSON.stringify(data));
-    
+     alert(JSON.stringify(data));
+
     router.replace("/congrats-school");
   };
 
@@ -271,7 +287,10 @@ function Regschool() {
                 />
               </InputGroup>
             </FormControl>
-            <FormControl id="schoolLocation">
+            <FormControl
+              id="schoolLocation"
+              isInvalid={!!errors.schoolLocation}
+            >
               <FormLabel
                 opacity="0.7"
                 color="#301446"
@@ -281,25 +300,40 @@ function Regschool() {
               >
                 School Location
               </FormLabel>
+             
               <Select
-                opacity="0.7"
-                color="#301446"
-                fontSize="14px"
-                fontFamily={"Mulish"}
-                fontWeight="600"
-                bg="#F9FAFF"
-                icon={
-                  <TriangleDownIcon
-                    w={"10px !important"}
-                    h={"10px !important"}
-                    color="brand.purple"
-                  />
-                }
+                options={options}
+                instanceId="schoolLocation"
                 {...register("schoolLocation", { required: true })}
-              >
-                <option value="Lagos">Lagos</option>
-                <option value="Nigeria">Nigeria</option>
-              </Select>
+                onChange={(e: any) =>
+                  setValue("schoolLocation", e?.value || "")
+                }
+                placeholder=" "
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    borderRadius: "4px",
+                    outline: "none",
+                    boxShadow: "none",
+                    background: "#F9FAFF",
+                    borderColor: "#E0E7FF",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    color: "rgba(48, 20, 70, 0.7);",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                    background: state.isSelected ? "#F9FAFF" : "#fff",
+                  }),
+                }}
+              />
+              <FormErrorMessage>
+                {errors?.schoolLocation?.message}
+              </FormErrorMessage>
             </FormControl>
             <FormControl id="examLocation">
               <FormLabel
@@ -312,24 +346,34 @@ function Regschool() {
                 Preffered Exam Location
               </FormLabel>
               <Select
-                opacity="0.7"
-                color="#301446"
-                fontSize="14px"
-                fontFamily={"Mulish"}
-                fontWeight="600"
-                bg="#F9FAFF"
-                icon={
-                  <TriangleDownIcon
-                    w={"10px !important"}
-                    h={"10px !important"}
-                    color="brand.purple"
-                  />
-                }
+                options={options}
+                instanceId="examLocation"
                 {...register("examLocation", { required: true })}
-              >
-                <option value="Lagos">Lagos</option>
-                <option value="Nigeria">Nigeria</option>
-              </Select>
+                onChange={(e: any) => setValue("examLocation", e?.value || "")}
+                placeholder=" "
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    borderRadius: "4px",
+                    outline: "none",
+                    boxShadow: "none",
+                    background: "#F9FAFF",
+                    borderColor: "#E0E7FF",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    color: "rgba(48, 20, 70, 0.7);",
+                    fontSize: "14px",
+                    fontFamily: "Mulish",
+                    fontWeight: "600",
+                    background: state.isSelected ? "#F9FAFF" : "#fff",
+                  }),
+                }}
+              />
+             
             </FormControl>
           </SimpleGrid>
           <SimpleGrid
@@ -516,26 +560,34 @@ function Regschool() {
                       Gender
                     </FormLabel>
                     <Select
-                      opacity="0.7"
-                      color="#301446"
-                      fontSize="14px"
-                      fontFamily={"Mulish"}
-                      fontWeight="600"
-                      bg="#F9FAFF"
-                      icon={
-                        <TriangleDownIcon
-                          w={"10px !important"}
-                          h={"10px !important"}
-                          color="brand.purple"
-                        />
-                      }
-                      {...register(`students.${index}.gender`, {
-                        required: true,
-                      })}
-                    >
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </Select>
+                      options={gender}
+                      instanceId="gender"
+                      {...register("gender", { required: true })}
+                      onChange={(e: any) => setValue("gender", e?.value || "")}
+                      placeholder=" "
+                      styles={{
+                        control: (base, state) => ({
+                          ...base,
+                          borderRadius: "4px",
+                          outline: "none",
+                          boxShadow: "none",
+                          background: "#F9FAFF",
+                          borderColor: "#E0E7FF",
+                          fontSize: "14px",
+                          fontFamily: "Mulish",
+                          fontWeight: "600",
+                        }),
+                        option: (base, state) => ({
+                          ...base,
+                          color: "rgba(48, 20, 70, 0.7);",
+                          fontSize: "14px",
+                          fontFamily: "Mulish",
+                          fontWeight: "600",
+                          background: state.isSelected ? "#F9FAFF" : "#fff",
+                        }),
+                      }}
+                    />
+                   
                   </FormControl>
                   <FormControl id="dateOfBirth">
                     <FormLabel
@@ -572,22 +624,20 @@ function Regschool() {
                         fontSize="14px"
                         opacity="0.7"
                         p={2}
-                        zIndex='1000000'
+                        zIndex="1000000"
                         bg="#F9FAFF"
                       >
                         {" "}
                         <ReactDatePicker
-                         
                           selected={startDate}
                           onChange={(date: Date) => setStartDate(date)}
-                          dateFormat='dd/MM/yyyy'
-                   
-                   // minDate={moment().subtract(500, "years")}
-                   // maxDate={moment().subtract(25, "years")}
-                    // showDisabledMonthNavigation
-                    dropdownMode="select"
-                    showYearDropdown
-        scrollableYearDropdown
+                          dateFormat="dd/MM/yyyy"
+                          // minDate={moment().subtract(500, "years")}
+                          // maxDate={moment().subtract(25, "years")}
+                          // showDisabledMonthNavigation
+                          dropdownMode="select"
+                          showYearDropdown
+                          scrollableYearDropdown
                         />
                       </FormLabel>
                     </InputGroup>
@@ -610,26 +660,36 @@ function Regschool() {
                       Grade Group
                     </FormLabel>
                     <Select
-                      opacity="0.7"
-                      color="#301446"
-                      fontSize="14px"
-                      fontFamily={"Mulish"}
-                      fontWeight="600"
-                      bg="#F9FAFF"
-                      icon={
-                        <TriangleDownIcon
-                          w={"10px !important"}
-                          h={"10px !important"}
-                          color="brand.purple"
-                        />
+                      options={grades}
+                      instanceId="gradeGroup"
+                      {...register("gradeGroup", { required: true })}
+                      onChange={(e: any) =>
+                        setValue("gradeGroup", e?.value || "")
                       }
-                      {...register(`students.${index}.gradeGroup`, {
-                        required: true,
-                      })}
-                    >
-                      <option value="SeniorSecondary">Senior Secondary</option>
-                      <option value="JuniorSecondary">Junior Secondary</option>
-                    </Select>
+                      placeholder=" "
+                      styles={{
+                        control: (base, state) => ({
+                          ...base,
+                          borderRadius: "4px",
+                          outline: "none",
+                          boxShadow: "none",
+                          background: "#F9FAFF",
+                          borderColor: "#E0E7FF",
+                          fontSize: "14px",
+                          fontFamily: "Mulish",
+                          fontWeight: "600",
+                        }),
+                        option: (base, state) => ({
+                          ...base,
+                          color: "rgba(48, 20, 70, 0.7);",
+                          fontSize: "14px",
+                          fontFamily: "Mulish",
+                          fontWeight: "600",
+                          background: state.isSelected ? "#F9FAFF" : "#fff",
+                        }),
+                      }}
+                    />
+                 
                   </FormControl>
 
                   <FormControl id="competitionCategory">
@@ -643,26 +703,37 @@ function Regschool() {
                       Competition Category
                     </FormLabel>
                     <Select
-                      opacity="0.7"
-                      color="#301446"
-                      fontSize="14px"
-                      fontFamily={"Mulish"}
-                      fontWeight="600"
-                      bg="#F9FAFF"
-                      icon={
-                        <TriangleDownIcon
-                          w={"10px !important"}
-                          h={"10px !important"}
-                          color="brand.purple"
-                        />
+                      options={grades}
+                      instanceId="competitionCategory"
+                      {...register("competitionCategory", { required: true })}
+                      onChange={(e: any) =>
+                        setValue("competitionCategory", e?.value || "")
                       }
-                      {...register(`students.${index}.competitionCategory`, {
-                        required: true,
-                      })}
-                    >
-                      <option value="Science">Science</option>
-                      <option value="maths">maths</option>
-                    </Select>
+                      placeholder=" "
+                      styles={{
+                        control: (base, state) => ({
+                          ...base,
+                          borderRadius: "4px",
+                          outline: "none",
+                          boxShadow: "none",
+                          background: "#F9FAFF",
+                          borderColor: "#E0E7FF",
+                          fontSize: "14px",
+                          fontFamily: "Mulish",
+                          fontWeight: "600",
+                        }),
+                        option: (base, state) => ({
+                          ...base,
+                          color: "rgba(48, 20, 70, 0.7);",
+                          fontSize: "14px",
+                          fontFamily: "Mulish",
+                          fontWeight: "600",
+                          background: state.isSelected ? "#F9FAFF" : "#fff",
+                        }),
+                      }}
+                    />
+
+                 
                   </FormControl>
 
                   <FormControl id="class">
@@ -676,6 +747,38 @@ function Regschool() {
                       Class
                     </FormLabel>
                     <Select
+                      options={grades}
+                      {...register(`students.${index}.class`, {
+                        required: true,
+                      })}
+                      onChange={(e: any) =>
+                        setValue(`students.${index}.class`, e?.value || "")
+                      }
+                      placeholder=" "
+                      styles={{
+                        control: (base, state) => ({
+                          ...base,
+                          borderRadius: "4px",
+                          outline: "none",
+                          boxShadow: "none",
+                          background: "#F9FAFF",
+                          borderColor: "#E0E7FF",
+                          fontSize: "14px",
+                          fontFamily: "Mulish",
+                          fontWeight: "600",
+                        }),
+                        option: (base, state) => ({
+                          ...base,
+                          color: "rgba(48, 20, 70, 0.7);",
+                          fontSize: "14px",
+                          fontFamily: "Mulish",
+                          fontWeight: "600",
+                          background: state.isSelected ? "#F9FAFF" : "#fff",
+                        }),
+                      }}
+                    />
+
+                    {/* <Select
                       opacity="0.7"
                       color="#301446"
                       fontSize="14px"
@@ -695,7 +798,7 @@ function Regschool() {
                     >
                       <option value="SeniorSecondary">Senior Secondary</option>
                       <option value="JuniorSecondary">Junior Secondary</option>
-                    </Select>
+                    </Select> */}
                   </FormControl>
                   <FormControl id="ulessonNumber">
                     <FormLabel
